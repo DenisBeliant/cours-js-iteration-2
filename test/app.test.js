@@ -42,9 +42,8 @@ test('la fonction comms retourne un objet json contenant une liste des modes de 
     assert.notEqual(d, undefined);
     assert.equal(typeof d, 'object')
     assert.equal(d.communication.length, 2);
-    assert.equal(d.communication, ['wifi', 'lorawan']);
+    assert.deepEqual(d.communication, ['wifi', 'lorawan']);
 });
-
 
 test('objects renvoie la liste des objets dans un objet json',()=>{
     const d= app.objects()
@@ -53,7 +52,7 @@ test('objects renvoie la liste des objets dans un objet json',()=>{
     assert.equal(Object.keys(d).length,1);
     assert.equal(Object.keys(d)[0],'objects');
     assert.equal(d.objects.length, 11)
-    assert.equal(d, {"objects":
+    assert.deepEqual(d, {"objects":
     [{
         "serial":"OBJ_001",
         "type":"raspberry_TH",
@@ -107,7 +106,7 @@ test('la fonction objects_serials renvoie une liste avec les serials de tous les
     assert.equal(typeof d, 'object');
     assert.equal(Object.keys(d).length,1);
     assert.equal(Object.keys(d)[0],'objects');
-    assert.equal(typeof d.objects[0], 'strings');
+    assert.equal(typeof d.objects[0], 'string');
     assert.equal(d.objects.indexOf('OBJ_000'), -1);
     assert.notEqual(d.objects.indexOf('OBJ_001'), -1);
     assert.notEqual(d.objects.indexOf('OBJ_005'), -1);
@@ -121,7 +120,7 @@ test("la fonction get_object_by_serial retourne l'objet demandé", ()=>{
     assert.equal(f("12345"), undefined);
     assert.equal(typeof (f("OBJ_009")), 'object' );
     assert.equal(Object.keys(f("OBJ_010")).length ,8 );
-    assert.equal(f("OBJ_003"), { "serial": "OBJ_003", "type": "raspberry_TH", "image": "raspberry-pi-4.jpg", "description": "Capteur de température et d'humidité de la salle de cours du Campus de Valence", "location": "44.932990, 4.890915", "refresh": 5, "status": true, "provisionning": { "date": "2020-03-20", "operator": "JPA" } });
+    assert.deepEqual(f("OBJ_003"), { "serial": "OBJ_003", "type": "raspberry_TH", "image": "raspberry-pi-4.jpg", "description": "Capteur de température et d'humidité de la salle de cours du Campus de Valence", "location": "44.932990, 4.890915", "refresh": 5, "status": true, "provisionning": { "date": "2020-03-20", "operator": "JPA" } });
 });
 
 test("la fonction get_object_by_operator retourne la liste d'objet demandée", ()=>{
@@ -144,7 +143,7 @@ test('la fonction get_types_by_comm retourne la liste des types demandés et leu
     assert.equal(Object.keys(f("wifi"))[0], "types");
     assert.equal(Object.keys(f("lorawan"))[0], "types");
     assert.equal(f('wifi').types.length, 3 );
-    assert.equal(f('lorawan').types.length, 3 );
+    assert.equal(f('lorawan').types.length, 2 );
     assert.notDeepEqual(f('wifi').types.length, f('lorawan').types.length);
 });
 
