@@ -85,7 +85,6 @@ function types(){
         arr.push(obj[p]);
     }
 
-    console.log(arr);
     return {"types":arr};
 }
 
@@ -98,12 +97,14 @@ function types(){
  * Cette liste sera contenu dans la clé formats.
  */
 function formats(){
-
-    let d = {"formats":data.data_formats};
-    console.log(d);
-    return {"formats":data.data_formats};
+    var formats = data.data_formats;
+    var result = [];
+    for (var format in formats){
+        result.push(formats[format]);
+    }
+    console.log(result);
+    return {"formats":result};
 }
-
  /**
   * Cette fonction est exécutée lorsqu'on demande l'adresse
   * http://localhost:5000/objects/serials représentée par la route '/objects/serials'
@@ -113,7 +114,9 @@ function formats(){
   * Cette liste sera contenue dans la clé objects
   */
 function objects_serials(){
-    return {"objects":[]};
+    let r = JSON.stringify({"objects":[data.objects]});
+    console.log(r);
+    return r;
 }
 
 /**
