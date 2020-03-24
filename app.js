@@ -152,7 +152,6 @@ function get_object_by_serial(serial){
  */
 function get_objects_by_operator(op){
 
-    console.log(op);
     var choses = data.objects;
     let r = [];
 
@@ -161,7 +160,6 @@ function get_objects_by_operator(op){
         if(choses[e].provisionning.operator == op) r.push(choses[e]);
     }
 
-    console.log(r);
     if (r.length == 0) return undefined;
     return {"objects":r};
 }
@@ -169,23 +167,46 @@ function get_objects_by_operator(op){
 /**
  * Cette fonction est exécutée lorsqu'on demande l'adresse
  * http://localhost:5000/types/comm/<comm> représentée par la route '/types/comm/:comm'
- * Elle prend le serial de l'objet en paramètre.
+ * Elle prend le comm de l'objet en paramètre.
  * Elle retourne un objet javascript contenant une liste de types
  * ayant pour mode de communication celui passé en paramètre.
  */
 function get_types_by_comm(comm){
-    return comm;
+
+    var choses = data.types;
+    let r = [];
+
+    for(var e in choses) {
+
+        if(choses[e].communication == comm) r.push(choses[e]);
+    }
+
+    if (r.length == 0) return undefined;
+    return {"types":r};
+
 }
 
 /**
  * Cette fonction est exécutée lorsqu'on demande l'adresse
  * http://localhost:5000/types/format/<format> représentée par la route '/types/format/:format'
- * Elle prend le serial de l'objet en paramètre.
+ * Elle prend le format de l'objet en paramètre.
  * Elle retourne un objet javascript contenant une liste de types
  * ayant pour un format de données celui passé en paramètre.
  */
 function get_types_by_format(format){
-    return format;
+
+    var choses = data.types;
+    let r = [];
+
+    for(var e in choses) {
+        for (var el in choses[e].sensors) {
+
+            if(choses[e].sensors[el] == format) r.push(choses[e]);
+        }
+    }
+
+    if (r.length == 0) return undefined;
+    return {"types":r};
 }
 
 /**
@@ -196,7 +217,19 @@ function get_types_by_format(format){
  * ayant pour mode de communication celui passé en paramètre.
  */
 function filter_objects_by_comm(comm){
-    return comm;
+
+    var choses = data;
+    let r = [];
+
+    for(var e in choses) {
+
+        if(choses[e].types == comm) r.push(choses[e]);
+    }
+
+    console.log(r.length);
+    if (r.length == 0) return undefined;
+    return {"objects":r};
+
 }
 
 /**
