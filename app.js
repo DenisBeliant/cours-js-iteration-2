@@ -102,7 +102,7 @@ function formats(){
     for (var format in formats){
         result.push(formats[format]);
     }
-    console.log(result);
+
     return {"formats":result};
 }
  /**
@@ -113,10 +113,14 @@ function formats(){
   * de tous les numéros de série des objets de la base de données.
   * Cette liste sera contenue dans la clé objects
   */
-function objects_serials(){
-    let r = JSON.stringify({"objects":[data.objects]});
-    console.log(r);
-    return r;
+ function objects_serials(){
+    var choses = data.objects;
+    var result = [];
+    for (var e in choses){
+        result.push(choses[e].serial);
+    }
+
+    return {"objects":result};
 }
 
 /**
@@ -127,7 +131,16 @@ function objects_serials(){
  * l'objet ayant le serial passé en paramètre.
  */
 function get_object_by_serial(serial){
-    return serial;
+
+    var choses = data.objects;
+    let r;
+
+    for(var e in choses) {
+        if(choses[e].serial == serial) r = choses[e];
+    }
+
+    // console.log({r});
+    return r;
 }
 
 /**
@@ -137,8 +150,20 @@ function get_object_by_serial(serial){
  * Elle retourne un objet javascript contenant une
  * liste des objets ayant l'opérateur passé en paramètre.
  */
-function get_objects_by_operator(operator){
-    return operator;
+function get_objects_by_operator(op){
+
+    console.log(op);
+    var choses = data.objects;
+    let r = [];
+
+    for(var e in choses) {
+
+        if(choses[e].provisionning.operator == op) r.push(choses[e]);
+    }
+
+    console.log(r);
+    if (r.length == 0) return undefined;
+    return {"objects":r};
 }
 
 /**
