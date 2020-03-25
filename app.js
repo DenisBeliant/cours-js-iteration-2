@@ -116,6 +116,7 @@ function formats(){
  function objects_serials(){
     var choses = data.objects;
     var result = [];
+
     for (var e in choses){
         result.push(choses[e].serial);
     }
@@ -218,17 +219,26 @@ function get_types_by_format(format){
  */
 function filter_objects_by_comm(comm){
 
-    var choses = data;
-    let r = [];
+    let type = data.types;
+    let obj = data.objects;
+    let res = [];
 
-    for(var e in choses) {
+    for(var key in type) {
 
-        if(choses[e].types == comm) r.push(choses[e]);
+        if(type[key].communication === comm) {
+            for(var key2 in obj){
+                if(obj[key2].type === key) {
+                    res.push(type[key2]);
+                }
+            }
+        }
     }
 
-    console.log(r.length);
-    if (r.length == 0) return undefined;
-    return {"objects":r};
+
+
+
+    if (res.length == 0) return undefined;
+    return {"objects":res};
 
 }
 
@@ -241,7 +251,9 @@ function filter_objects_by_comm(comm){
  * du même type que celui passé en paramètre.
  */
 function filter_objects_by_data_type(data_type){
-    return data_type;
+
+    console.log(data_type);
+
 }
 
 /**
