@@ -290,7 +290,6 @@ function filter_objects_by_data_type(data_type){
 
         }
     }
-    console.log(res.length);
     if (res.length == 0) {
         // console.log('res vide');
         return undefined;
@@ -309,9 +308,62 @@ function filter_objects_by_data_type(data_type){
  * Les types de données des sensors et autres informations seront regroupé dans la clé sensors de l'objet.
  */
 function get_full_object_by_serial(serial){
-    return serial;
+
+    let objets = data.objects;
+    let types = data.types;
+    let dataFormats = data.data_formats;
+    let res = [];
+    let obj = {};
+    
+           if(!isEmpty(get_object_by_serial(serial))) {
+
+            obj = get_object_by_serial(serial);
+            Object.assign(obj.sensors, filter_objects_by_data_type(obj.type));
+
+            // for(let el in obj.sensors)
+            // {
+            //     for(let e in dataFormats) {
+            //         if(e == obj.sensors[el]) {
+            //             Object.assign(obj, get_types_by_format(e));
+            //         }
+                    
+            //     }
+
+            // }
+
+           } 
+
+    console.log('\n');
+           console.log(obj);
+    if (isEmpty(obj)) return undefined; 
+
+    return {"objects":obj};
 }
 
+function isEmpty(obj) {
+
+    // null and undefined are "empty"
+    if (obj == null) return true;
+
+    // Assume if it has a length property with a non-zero value
+    // that that property is correct.
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+
+    // If it isn't an object at this point
+    // it is empty, but it can't be anything *but* empty
+    // Is it empty?  Depends on your application.
+    if (typeof obj !== "object") return true;
+
+    // Otherwise, does it have any properties of its own?
+    // Note that this doesn't handle
+    // toString and valueOf enumeration bugs in IE < 9
+    for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+
+    return true;
+}
 /**
  * À partir de ce commentaire ne rien modifier.
  * le serveur est lancé, ses routes sont définies
