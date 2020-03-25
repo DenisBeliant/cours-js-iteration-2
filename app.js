@@ -252,7 +252,51 @@ function filter_objects_by_comm(comm){
  */
 function filter_objects_by_data_type(data_type){
 
-    console.log(data_type);
+    let obj = data.objects;
+    let type = data.types;
+    let format = data.data_formats;
+    let res = [];
+    for (var key in format) {
+        // console.log(format[key].data_type);
+        // console.log(key);
+        if (format[key].data_type === data_type) { //"boolean"
+            // console.log(key);
+            for (var key2 in type) {
+                for (var key3 in type[key2].sensors) {
+                    if (type[key2].sensors[key3] == key) {
+                        // console.log(type[key2].sensors[key3] + ' ==  ' + key);
+                        // console.log(key2);
+                        for (var key4 in obj) {
+                            // console.log('2eme boucle' + obj[key2].type);
+                            if (obj[key4].type === key2) {
+                                // console.log('3eme condition ' + obj[key4].type +' = ' + key2);
+                                // console.log(obj[key4]);
+                                var exist = false;
+                                for(let e in res) {
+                                    // console.log(res[e]);
+                                    if(res[e] == obj[key4]) exist = true;
+                                }
+                                if (!exist) {
+
+                                    
+                                    obj[key4]["sensors"] = type[key2].sensors;
+                                    res.push(obj[key4]);
+                                } 
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+    console.log(res.length);
+    if (res.length == 0) {
+        // console.log('res vide');
+        return undefined;
+    }
+    return { "objects": res};
+
 
 }
 
