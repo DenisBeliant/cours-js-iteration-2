@@ -41,9 +41,11 @@ function add_line_to_table(data) {
     <td><input type="checkbox" /></td>\
     <td><input type="button" value="Détails" class="btn-outline-warning"/></td>\
 </tr>';
-document.getElementById('table_body').innerHTML += line;
+// In JS :
+// document.getElementById('table_body').innerHTML += line;
 
-// $('#table_body').append(line);
+// In Jquery baby !
+$('#table_body').append(line);
 }
 // Solution 1 :
 // load_components();
