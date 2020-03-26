@@ -13,5 +13,5 @@ function load_components() {
 }
 
 // Solution 1 :
-load_compenents();
+load_components();
 
