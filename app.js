@@ -348,10 +348,10 @@ function get_full_object_by_serial(serial) {
             }
         }
 
-
     }
 
     console.log('\n');
+    console.log("Merci à tous !");
     console.log(obj);
     if (isEmpty(obj)) return undefined;
 

@@ -15,10 +15,20 @@
     <link rel="stylesheet" href="/static/adminlte/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Mon style à moi ! -->
+    <link rel="stylesheet" type="text/css" href=".static/css/monStyle.css">
 
 </head>
 
-<body>
+<script>
+    // Solution 4 :
+
+        // document.addEventListener('load', load_components, false);
+
+</script>
+
+ <!-- Solution 5 : -->
+<body onload="load_components()">
     <div class="wrapper" id="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light" id="nav">
@@ -37,7 +47,7 @@
             <a href="/" class="brand-link">
                 <img src="/static/images/le-campus.jpg" alt="Logo Campus" class="brand-image elevation-3"
                     style="opacity: .9; background-color: white;">
-                <span class="brand-text font-weight-light">IoT Chambéry</span>
+                <span class="brand-text font-weight-light">IoT Les Bauges RPZ</span>
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
@@ -144,10 +154,10 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" id="footer">
-            <strong>Copyright &copy; 2020 <a href="https://www.le-campus-numerique.fr/">Le Campus Numérique in the
-                    Alps</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2020 <a href="https://www.le-campus-numerique.fr/">Le Butters Numérique in the
+                    Alps</a>.</strong> All rights autorised.
             <div class="loat-right d-none d-sm-inline-block">
-                <b>Version</b> 1.0.0
+                <b>Version</b> 0.1
             </div>
         </footer>
 
@@ -163,9 +173,21 @@
 
 
     <!-- 
-        Ajouter votre script javascript personnélisé ici 
+        Ajouter votre script javascript personnalisé ici 
     -->
+    <script src="/static/js/objects.js"></script>
 
+    <script>
+        //Solution 3 :
+        load_components();
+
+    </script>
+
+<script>
+    // Solution 2 :
+    window.addEventListener('load', load_components, false);
+
+</script>
 </body>
 
 

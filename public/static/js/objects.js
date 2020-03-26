@@ -5,8 +5,13 @@
  *    - charger la liste des objets depuis l'API
  *    - charger les données des objets dans la table
  */
-function load_components(){
+
+function load_components() {
     console.log("Chargement des données de la page");
     // Ajouter ici le code permettant de charger dynamiquement les éléments de la page
+
 }
+
+// Solution 1 :
+load_compenents();
 
