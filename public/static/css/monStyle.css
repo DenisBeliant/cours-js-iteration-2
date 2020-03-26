@@ -8,6 +8,7 @@
 .card-primary {
     background-color: turquoise;
     color: white;
+    box-shadow: 10px 5px 5px red;
 }
 #side {
     background-color: green;
