@@ -9,7 +9,7 @@
 function load_components() {
     console.log("Chargement des données de la page");
     // Ajouter ici le code permettant de charger dynamiquement les éléments de la page
-
+    $.get('/objects', function(d) { console.log(d); });
 }
 
 // Solution 1 :
