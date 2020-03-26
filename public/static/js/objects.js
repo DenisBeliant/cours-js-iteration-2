@@ -27,20 +27,33 @@ function load_components() {
 
         for(let e of data.objects) {
 
-            add_line_to_table(e);
+         add_line_to_table(e);
         }
      });
 }
 
 function add_line_to_table(data) {
 
+    if(data.image == undefined) {
+        
+        $.get('/object/full/'+data.serial, function(d) {
+
+         Object.assign(data, {'image':d.default_image});
+         console.log(data);
+
+    });
+}
+
+    console.log(data.image);
     let line = '<tr>\
     <td>'+data.serial+'</td>\
     <td><img src="/static/images/'+data.image+'" width="40px" height="40px"/></td>\
     <td>'+data.description+'</td>\
-    <td><input type="checkbox" /></td>\
+    <td><input type="checkbox"'+data.status+' /></td>\
     <td><input type="button" value="Détails" class="btn-outline-warning"/></td>\
 </tr>';
+
+
 // In JS :
 // document.getElementById('table_body').innerHTML += line;
 

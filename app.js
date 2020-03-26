@@ -409,10 +409,10 @@ app.get('/types/comm/:comm', route(get_types_by_comm));
 app.get('/types/format/:format', route(get_types_by_format));
 
 
-function route(fun) {
-    return function (req, res) {
-        if (Object.keys(req.params).length !== 0) {
-            res.send(fun(req.params));
+function route(fun){
+    return function(req, res){
+        if( Object.keys(req.params).length!==0 ){
+            res.json(fun(Object.values(req.params)[0]));
         }
         return res.send(fun());
     }
