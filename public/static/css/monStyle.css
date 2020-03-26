@@ -1,3 +1,24 @@
-body{
+.content-wrapper{
     background-color: pink;
+}
+.box-title {
+    background-color: yellow;
+    color: blue;
+}
+.card-primary {
+    background-color: turquoise;
+    color: white;
+}
+#side {
+    background-color: green;
+}
+#nav {
+    background-color: tomato;
+}
+#footer {
+    background-color: blue;
+    color: black;
+}
+#footer a {
+    color: red;
 }
