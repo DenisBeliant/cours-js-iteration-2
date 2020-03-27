@@ -29,7 +29,7 @@ function demarrage() {
  */
 function home() {
     return {
-        "oui": "oui"
+        "Qu'est-ce que tu fous": " ici ?"
     };
 }
 

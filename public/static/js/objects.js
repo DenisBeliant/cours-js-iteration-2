@@ -25,9 +25,8 @@ function loadDefautPic(data) {
 
         Object.assign(data, {'image':d.default_image});
         console.log(data.image);
-    //    $('td:contains('+data.serial+')').next().html('<img src="/static/images/'+data.image+'" width="40px" height="40px">');
         $('td:contains('+data.serial+')').next().children().attr('src', '/static/images/'+data.image);
-
+        console.log(document.getElementsByTagName(`td:contains(${data.serial})`).nextSibling);
        });
 
 }
