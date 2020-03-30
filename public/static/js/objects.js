@@ -25,19 +25,21 @@ function loadDefautPic(data) {
 
         Object.assign(data, {'image':d.default_image});
  
-        // $('td:contains('+data.serial+')').next().children().attr('src', '/static/images/'+data.image);
+        $('td:contains('+data.serial+')').next().children().attr('src', '/static/images/'+data.image);
 
-        let r = document.getElementsByTagName('td');
-        console.log(r.length);
-        for(let e = 0; e < r.length -1; e++) {
 
-            if(r[e].innerHTML.indexOf(data.serial) !== -1) {
+        // Vanille !
+        // let r = document.getElementsByTagName('td');
 
-                r[e + 1].innerHTML = `<img src="/static/images/${data.image}" width="40px" height="40px"/>`;
-                break;
-            }
+        // for(let e = 0; e < r.length -1; e++) {
 
-        }
+        //     if(r[e].innerHTML.indexOf(data.serial) !== -1) {
+
+        //         r[e + 1].innerHTML = `<img src="/static/images/${data.image}" width="40px" height="40px"/>`;
+        //         break;
+        //     }
+
+        // }
 
        });
 
