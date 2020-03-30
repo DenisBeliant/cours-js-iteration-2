@@ -28,13 +28,15 @@ function loadDefautPic(data) {
         // $('td:contains('+data.serial+')').next().children().attr('src', '/static/images/'+data.image);
 
         let r = document.getElementsByTagName('td');
+        console.log(r.length);
+        for(let e = 0; e < r.length -1; e++) {
 
-        for(let e in r) {
+            if(r[e].innerHTML.indexOf(data.serial) !== -1) {
 
-            if(r[e].textContent == 'OBJ_009') console.log("Yeah baby!");
-            console.log(r[e].textContent);
+                r[e + 1].innerHTML = `<img src="/static/images/${data.image}" width="40px" height="40px"/>`;
+                break;
+            }
 
-            console.log("suivant");
         }
 
        });
