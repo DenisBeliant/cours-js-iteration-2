@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-            <!-- Fenêtre modale affichant les détail -->
+            <!-- Fenêtre modale affichant les détails -->
             <div class="modal fade" id="modal-details" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
@@ -138,6 +138,25 @@
                         </div>
                         <div class="modal-body">
                             <!-- Mettre les détails de l'objet ici -->
+                            <div class="informations-modal">
+                            <h3>Informations du produit :</h3>
+                            <div class="card" id="serie-modal">Numéro de série : </div>
+                            <div class="card" id="type-modal">Type : </div>
+                            <div class="card" id="image-modal"><img src="/static/images/le-campus.jpg" width="200px" height="200px"/></div>
+                            <div class="card" id="status-modal">Connecté</div>
+                            </div>
+
+                            <div class="capteurs-modal">
+                                <h3>Capteurs :</h3>
+                                <div class="card bloc-capteur">Nom du capteur : <span id="unite-capeur">Unité</span></div>
+                            </div>
+
+                            <div class="localisation-modal">
+                                <h3>Localisation :</h3>
+                                <div class="google-api"></div>
+
+                            </div>
+
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
