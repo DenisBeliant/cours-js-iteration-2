@@ -24,9 +24,19 @@ function loadDefautPic(data) {
     $.get('/object/full/'+data.serial, function(d) {
 
         Object.assign(data, {'image':d.default_image});
-        console.log(data.image);
-        $('td:contains('+data.serial+')').next().children().attr('src', '/static/images/'+data.image);
-        console.log(document.getElementsByTagName(`td:contains(${data.serial})`).nextSibling);
+ 
+        // $('td:contains('+data.serial+')').next().children().attr('src', '/static/images/'+data.image);
+
+        let r = document.getElementsByTagName('td');
+
+        for(let e in r) {
+
+            if(r[e].textContent == 'OBJ_009') console.log("Yeah baby!");
+            console.log(r[e].textContent);
+
+            console.log("suivant");
+        }
+
        });
 
 }
