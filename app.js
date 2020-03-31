@@ -338,7 +338,7 @@ function get_full_object_by_serial(serial) {
         // dataFormats
         // Parcours des sensors de l'objet :
         for(let e in obj.sensors) {
-
+            
             // Parcours de la liste des sensors :
             for (let el in dataFormats) {
                 let nomSensor = obj.sensors[e];

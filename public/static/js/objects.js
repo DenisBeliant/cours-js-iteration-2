@@ -37,20 +37,45 @@ function load_modale(balise) {
 
         // Info :
         $("#serie-modal").html(`Numéro de série : ${d.serial}`);
-        $("#type-modal").append(`Description : ${d.description}`);
+        $("#type-modal").html(`Description : ${d.description}`);
         $("#image-modal").children().attr('src', `/static/images/${d.default_image}`);
-        if (d.status) $('#status-modal').attr('class', 'card bg-success');
-        else $('#status-modal').attr('class', 'card bg-danger');
+        if (d.status) {
+            $('#status-modal').attr('class', 'card bg-success');
+            $('#status-modal').html(' Connecté');
+        } 
+        else {
+            $('#status-modal').attr('class', 'card bg-danger');
+            $('#status-modal').html(' Non connecté');
+        }
 
         // Capteurs :
-            for (let e in d.sensors) {
-                let remplissage = `<div class="capteurs-modal">
+        for (let e in d.sensors) {
+            let remplissage = `<div class="capteurs-modal">
                 <h3>Capteurs : ${e}</h3>
                 <div class="card bloc-capteur">Type : ${e} <span id="unite-capeur">Unité : ${e}</span></div>
             </div>`;
-                $('.bloc-capteur').append(remplissage);
-            }
+            $('.bloc-capteur').append(remplissage);
+        }
 
+        // Localisation :
+        // console.log(d.location.split(', '));
+        let locs = d.location.split(', ');
+        var mymap = L.map('mapid').setView(d.location, 13);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/satellite-v9',
+    tileSize: 512,
+    zoomOffset: -1,
+    z: 10,
+    x: locs[0],
+    y: locs[1],
+    accessToken: 'pk.eyJ1IjoiYnV0dGVyczczIiwiYSI6ImNrOGZxNXU0azAyd2QzbHBrazgyejUydDQifQ.KI60BPzP9wR5w4-L_B0YKw'
+}).addTo(mymap);
+    console.log(mymap);
+    
+        $('.google-api').html(mymap);
     });
 
 };

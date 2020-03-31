@@ -17,6 +17,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Mon style à moi ! -->
     <link rel="stylesheet" type="text/css" href="/static/css/monStyle.css">
+    <!-- CSS Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
 
 </head>
 
@@ -136,26 +140,29 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body container-fluid">
                             <!-- Mettre les détails de l'objet ici -->
-                            <div class="informations-modal">
+                        <div class="row">
+                            <div class="informations-modal col-4">
                             <h3>Informations du produit :</h3>
                             <div class="card" id="serie-modal">Numéro de série : </div>
                             <div class="card" id="type-modal">Type : </div>
                             <div class="card" id="image-modal"><img src="/static/images/le-campus.jpg" width="200px" height="200px"/></div>
                             <div class="card" id="status-modal">Connecté</div>
                             </div>
+                        
 
-                            <div class="capteurs-modal">
+                            <div class="capteurs-modal col-4">
                                 <h3>Capteurs :</h3>
                                 <div class="card bloc-capteur">Nom du capteur : <span id="unite-capeur">Unité</span></div>
                             </div>
 
-                            <div class="localisation-modal">
+                            <div class="localisation-modal col-4">
                                 <h3>Localisation :</h3>
                                 <div class="google-api"></div>
 
                             </div>
+                        </div>
 
                         </div>
                         <div class="modal-footer justify-content-between">
@@ -197,7 +204,11 @@
         Ajouter votre script javascript personnalisé ici 
     -->
     <script src="/static/js/objects.js"></script>
-
+    
+    <!-- Script Map : -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
      <script>
         //Solution 3 :
         load_components();
