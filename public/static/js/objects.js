@@ -33,6 +33,10 @@ function load_modale(balise) {
 
     $.get('/object/full/' + balise, function (d) {
 
+        // Vidage de la map pour ne pas quelle bug..
+        let mymap;
+        var container = L.DomUtil.get('google-api'); if(container != null){ container._leaflet_id = null; }
+
         console.log(d);
 
         // Info :
@@ -42,7 +46,7 @@ function load_modale(balise) {
         if (d.status) {
             $('#status-modal').attr('class', 'card bg-success');
             $('#status-modal').html(' Connecté');
-        } 
+        }
         else {
             $('#status-modal').attr('class', 'card bg-danger');
             $('#status-modal').html(' Non connecté');
@@ -56,20 +60,21 @@ function load_modale(balise) {
             </div>`;
             $('.bloc-capteur').append(remplissage);
         }
-
+        
         // Localisation :
         // console.log(d.location.split(', '));
+
         let locs = d.location.split(', ');
-        var mymap = L.map('google-api').setView([locs[0], locs[1]], 13);
+        mymap = L.map('google-api').setView([locs[0], locs[1]], 13);
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/satellite-v9',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoiYnV0dGVyczczIiwiYSI6ImNrOGZxNXU0azAyd2QzbHBrazgyejUydDQifQ.KI60BPzP9wR5w4-L_B0YKw'
-}).addTo(mymap);
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1IjoiYnV0dGVyczczIiwiYSI6ImNrOGZxNXU0azAyd2QzbHBrazgyejUydDQifQ.KI60BPzP9wR5w4-L_B0YKw'
+        }).addTo(mymap);
 
     });
 
