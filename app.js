@@ -324,6 +324,7 @@ function get_full_object_by_serial(serial) {
 
         //Communication :
         Object.assign(obj, comms());
+        Object.assign({}, obj);
 
         // Image par défaut :
         for (let e in types) {
@@ -338,13 +339,13 @@ function get_full_object_by_serial(serial) {
         // dataFormats
         // Parcours des sensors de l'objet :
         for(let e in obj.sensors) {
-            
+
             // Parcours de la liste des sensors :
             for (let el in dataFormats) {
                 let nomSensor = obj.sensors[e];
-
                 objetsFinal[nomSensor] = dataFormats[el];
                 if(el == obj.sensors[e]) Object.assign(obj.sensors, objetsFinal);
+                obj.sensors = Object.assign({}, obj.sensors);
             }
         }
 

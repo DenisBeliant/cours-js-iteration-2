@@ -33,9 +33,6 @@ function load_modale(balise) {
 
     $.get('/object/full/' + balise, function (d) {
 
-        // Vidage de la map pour ne pas quelle bug..
-        let mymap;
-        var container = L.DomUtil.get('google-api'); if(container != null){ container._leaflet_id = null; }
 
         console.log(d);
 
@@ -60,9 +57,12 @@ function load_modale(balise) {
             </div>`;
             $('.bloc-capteur').append(remplissage);
         }
-        
+
         // Localisation :
         // console.log(d.location.split(', '));
+
+        // Vidage de la map pour ne pas quelle bug..
+        let mymap = newFunction();
 
         let locs = d.location.split(', ');
         mymap = L.map('google-api').setView([locs[0], locs[1]], 13);
@@ -80,6 +80,16 @@ function load_modale(balise) {
 
 };
 
+
+function newFunction() {
+    let mymap;
+    var container = L.DomUtil.get('google-api');
+    if (container != null) {
+        container._leaflet_id = null;
+    }
+    ;
+    return mymap;
+}
 
 function loadDefautPic(data) {
 
