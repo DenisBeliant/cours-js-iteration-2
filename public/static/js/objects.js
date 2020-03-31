@@ -60,7 +60,7 @@ function load_modale(balise) {
         // Localisation :
         // console.log(d.location.split(', '));
         let locs = d.location.split(', ');
-        var mymap = L.map('mapid').setView(d.location, 13);
+        var mymap = L.map('google-api').setView([locs[0], locs[1]], 13);
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -68,14 +68,9 @@ function load_modale(balise) {
     id: 'mapbox/satellite-v9',
     tileSize: 512,
     zoomOffset: -1,
-    z: 10,
-    x: locs[0],
-    y: locs[1],
     accessToken: 'pk.eyJ1IjoiYnV0dGVyczczIiwiYSI6ImNrOGZxNXU0azAyd2QzbHBrazgyejUydDQifQ.KI60BPzP9wR5w4-L_B0YKw'
 }).addTo(mymap);
-    console.log(mymap);
-    
-        $('.google-api').html(mymap);
+
     });
 
 };
